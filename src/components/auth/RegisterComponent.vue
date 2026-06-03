@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>ingreso</h1>
+    <h1>Registro</h1>
     <form @submit.prevent="submit">
       <div class="input">
         <label>nombre</label>
@@ -15,7 +15,7 @@
         <input type="password" v-model="user.password" />
       </div>
 
-      <button @submit.prevent="submit">ingresar</button>
+      <button @submit.prevent="submit">Registrar</button>
     </form>
   </section>
 </template>

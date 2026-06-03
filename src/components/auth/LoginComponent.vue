@@ -36,7 +36,7 @@ async function submit() {
   } else {
     await login(user);
     if (authenticated.value) {
-      router.push({ name: "Home" });
+      router.replace({ name: "Home" });
     } else {
       alert("acceso denegado, credenciales incorrectas");
     }
@@ -55,13 +55,5 @@ form {
   margin: 20px 10px;
   flex-direction: column;
   width: 50%;
-}
-button {
-  width: 50%;
-  color: #fff;
-  background-color: green;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
 }
 </style>

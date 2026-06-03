@@ -1,20 +1,20 @@
 <script setup>
-import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import MenuNav from "./components/MenuNav.vue";
-import { navegacion } from "./routes/navegacion.js";
-import { useAuthStore } from "./stores/auth.js";
-import { storeToRefs } from "pinia";
+import { routes } from "./routes/configs/navegation";
+import { useAuthStore } from "./stores/auth";
 
 const route = useRoute();
-const router = useRouter();
-const authStore = useAuthStore();
-const rol_user = authStore.rol_user;
-const { authenticated } = storeToRefs(authStore);
+
+const { rol_user, authenticated } = useAuthStore();
 </script>
 
 <template>
-  <menu-nav :links="navegacion" :rol_user="rol_user" />
+  <menu-nav
+    :links="routes"
+    :rol_user="rol_user"
+    :authenticated="authenticated"
+  />
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
@@ -30,5 +30,26 @@ const { authenticated } = storeToRefs(authStore);
 .fade-enter-active,
 .fade-leave-active {
   transition: 0.5s all ease-in-out;
+}
+
+nav,
+ul {
+  display: flex;
+}
+ul {
+  list-style: none;
+  li {
+    margin: 20px;
+
+    a {
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+  }
+}
+.router-link-active {
+  background-color: #0b7b8d;
 }
 </style>

@@ -3,18 +3,33 @@
     <template v-if="cargando"> <p>cargando...</p> </template>
     <template v-else>
       <h3 v-if="listCategorias.length === 0">SIN DATOS</h3>
-      <DataTable
-        v-else
-        :headers="['ID', 'NOMBRE', 'ACTIVO', 'ACCIONES']"
-        :data="listCategorias"
-      />
+      <table v-else>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>descripcion</th>
+            <th>activo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="categoria in listCategorias" :key="categoria.id">
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nombre }}</td>
+            <td>{{ categoria.activo ? "activo" : "inactivo" }}</td>
+            <td>
+              <button @click="eliminar(categoria.id)">eliminar</button>
+              <button @click="editar(categoria.id)">editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </template>
   </section>
 </template>
 <script setup>
 import { categoriasProductos } from "../services/categorias";
 import { onMounted, ref } from "vue";
-import DataTable from "./DataTable.vue";
+
 const listCategorias = ref([]);
 const cargando = ref(false);
 

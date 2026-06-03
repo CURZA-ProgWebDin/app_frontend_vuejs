@@ -9,8 +9,9 @@ export const productos_routes = [
         component: () => import("../components/ProductoCreate.vue"),
         name: "ProductosCreate",
         meta: {
-          rol_access: ["admin", "editor"],
+          rol_access: ["admin", "editor", "superadmin"],
           required_auth: true,
+          menu: false,
         },
       },
       {
@@ -18,14 +19,16 @@ export const productos_routes = [
         component: () => import("../components/ProductosList.vue"),
         name: "ProductosList",
         meta: {
-          rol_access: ["admin", "editor"],
+          rol_access: ["admin", "editor", "superadmin"],
           required_auth: true,
+          menu: false,
         },
       },
     ],
     meta: {
-      rol_access: ["admin", "editor"],
+      rol_access: ["admin", "editor", "superadmin"],
       required_auth: true,
+      menu: true,
     },
   },
 ];
